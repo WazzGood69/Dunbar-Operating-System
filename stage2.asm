@@ -380,27 +380,27 @@ hline:
     push dx
     push di
     push es
-    mov bx,ax
     mov ax,0A000h
     mov es,ax
     mov ax,si
-    mov di,320
-    mul di
+    mov bx,320
+    mul bx
     add ax,cx
     mov di,ax
-    mov al,bl
-    mov ah,al
-    mov cx,dx
-    sub cx,dx
-    ; rebuild count: x2-x1+1
     pop dx
-    pop di
-    pop es
+    mov ax,dx
+    sub ax,cx
+    inc ax
+    mov cx,ax
+    mov al,07h
+    cld
+    rep stosb
     pop di
     pop dx
     pop cx
     pop bx
     pop ax
+    pop es
     ret
 
 ; The simple panel routine above intentionally leaves pixel color at BIOS
@@ -457,6 +457,10 @@ print_at_5_6:
     mov dh,6
     mov dl,5
     jmp print_at
+print_at_5_9:
+    mov dh,9
+    mov dl,5
+    jmp print_at
 print_at_5_11:
     mov dh,11
     mov dl,5
@@ -475,6 +479,10 @@ print_at_8_3:
     jmp print_at
 print_at_8_5:
     mov dh,5
+    mov dl,8
+    jmp print_at
+print_at_8_8:
+    mov dh,8
     mov dl,8
     jmp print_at
 print_at_12_12:
