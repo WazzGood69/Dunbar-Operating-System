@@ -14,7 +14,7 @@ $(BUILD)/stage2.bin: stage2.asm | $(BUILD)
 
 $(BUILD)/dunbar.img: $(BUILD)/boot.bin $(BUILD)/stage2.bin
 	cat $(BUILD)/boot.bin $(BUILD)/stage2.bin > $(BUILD)/dunbar.img
-	truncate -s 16384 $(BUILD)/dunbar.img
+	truncate -s 16896 $(BUILD)/dunbar.img
 
 clean:
 	rm -rf $(BUILD)
