@@ -6,8 +6,10 @@ org 0
 
 start:
     cli
-    xor ax, ax
+    mov ax, 0x1000
     mov ds, ax
+
+    xor ax, ax
     mov ss, ax
     mov sp, 0xFF00
     sti
